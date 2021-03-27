@@ -13,8 +13,31 @@ namespace ConsoleUI
             //AddColor();
             //AddBrand();
             //DeleteBrand();
+            //GetDetail();
+            //AddUser();
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            Rental rental = new Rental() { CarID = 1,CustomerID = 1,RentDate = DateTime.Now };
+            rentalManager.Add(rental);
+        }
+
+        private static void AddUser()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+            User user = new User()
+            {
+                EMail = "mail@mail.com",
+                FirstName = "Abdulkadir",
+                LastName = "KG",
+                Password = "123456"
+            };
+            userManager.Add(user);
+        }
+
+        private static void GetDetail()
+        {
             CarManager carManager = new CarManager(new EfCarDal());
             carManager.GetDetail(1);
+            Console.WriteLine(carManager.GetDetail(1).Data.BrandName);
         }
 
         private static void DeleteBrand()
