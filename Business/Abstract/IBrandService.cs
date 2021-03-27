@@ -1,18 +1,16 @@
 ﻿using Entities.Concrete;
-using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Business.Abstract
 {
-    public interface ICarService
+    public interface IBrandService
     {
         void Get(int ID);
         void GetAll();
-        void Add(Car car);
-        void Update(Car car);
-        void Delete(Car car);
-        CarDetailDto GetDetail(int ID);
+        void Add(Brand brand);
+        void Update(Brand brand);
+        void Delete(Brand brand);
     }
 }

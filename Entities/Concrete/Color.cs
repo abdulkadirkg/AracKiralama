@@ -8,6 +8,6 @@ namespace Entities.Concrete
     public class Color : IEntity
     {
         public int ID { get; set; }
-        public string Name { get; set; }
+        public string ColorName { get; set; }
     }
 }
