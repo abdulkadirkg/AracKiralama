@@ -26,14 +26,14 @@ namespace Business.Concrete
             _carDal.Delete(car);
         }
 
+        public void Get(int ID)
+        {
+            _carDal.Get(p=>p.ID == ID);
+        }
+
         public void GetAll()
         {
             _carDal.GetAll();
-        }
-
-        public void GetByID(int ID)
-        {
-            _carDal.GetByID(ID);
         }
 
         public void Update(Car car)
