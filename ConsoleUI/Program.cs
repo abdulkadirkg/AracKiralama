@@ -17,7 +17,7 @@ namespace ConsoleUI
             //AddUser();
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
             Rental rental = new Rental() { CarID = 1,CustomerID = 1,RentDate = DateTime.Now };
-            rentalManager.Add(rental);
+            rentalManager.Add(rental); 
         }
 
         private static void AddUser()
