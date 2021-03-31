@@ -11,6 +11,7 @@
   <ItemGroup>
     <PackageReference Include="Castle.Core" Version="4.4.1" />
     <PackageReference Include="FluentValidation" Version="9.5.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.4" />
   </ItemGroup>
 

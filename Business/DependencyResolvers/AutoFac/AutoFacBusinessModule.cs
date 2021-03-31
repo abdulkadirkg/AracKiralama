@@ -6,6 +6,7 @@ using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
+using DataAccess.EntityFramework.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -25,7 +26,9 @@ namespace Business.DependencyResolvers.AutoFac
             //User
             builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
             builder.RegisterType<EfUserDal>().As<IUserDal>().SingleInstance();
-
+            //CarImage
+            builder.RegisterType<CarImageManager>().As<ICarImageService>().SingleInstance();
+            builder.RegisterType<EfCarImageDal>().As<ICarImageDal>().SingleInstance();
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
