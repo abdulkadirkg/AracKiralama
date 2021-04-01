@@ -17,5 +17,6 @@ namespace Business.Constants
         public static string CarDeleted = "Araç Silindi";
         public static string ColorDeleted = "Renk Silindi";
         public static string BrandDeleted = "Marka Silindi";
+        public static string AuthorizationDenied = "Yetkisiz Erişim";
     }
 }
