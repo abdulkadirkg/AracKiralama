@@ -25,7 +25,7 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        [SecuredOperation("Product.Add,Admin")]
+        //[SecuredOperation("Product.Add,Admin")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
@@ -33,33 +33,50 @@ namespace Business.Concrete
             return new SuccessResult();
         }
         [CacheRemoveAspect("ICarService.Get")]
-        [SecuredOperation("Product.Delete,Admin")]
+        //[SecuredOperation("Product.Delete,Admin")]
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
             return new SuccessResult();
         }
         [CacheAspect]
-        [SecuredOperation("Product.Get,Admin")]
+        //[SecuredOperation("Product.Get,Admin")]
         public IDataResult<Car> Get(int ID)
         {
             return new SuccessDataResult<Car>(_carDal.Get(p=>p.ID == ID));
         }
+
+        public IDataResult<List<Car>> GetByBrandId(int ID)
+        {
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c=>c.BrandID == ID));
+        }
+
+        public IDataResult<List<Car>> GetByColorId(int ID)
+        {
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorID == ID));
+        }
+
         [CacheAspect]
-        [SecuredOperation("Product.GetAll,Admin")]
+        //[SecuredOperation("Product.GetAll,Admin")]
         [PerformanceAspect(1)]
         public IDataResult<List<Car>> GetAll()
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll());
         }
+
+        public IDataResult<List<CarDetailDto>> GetAllWithDetails()
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetAllWithDetails());
+        }
+
         [CacheAspect]
-        [SecuredOperation("Product.GetDetail,Admin")]
+        //[SecuredOperation("Product.GetDetail,Admin")]
         public IDataResult<CarDetailDto> GetDetail(int ID)
         {
-            return new SuccessDataResult<CarDetailDto>(_carDal.GetCarDetails(ID));
+            return new SuccessDataResult<CarDetailDto>(_carDal.GetWithDetails(ID));
         }
         [CacheRemoveAspect("ICarService.Get")]
-        [SecuredOperation("Product.Update,Admin")]
+        //[SecuredOperation("Product.Update,Admin")]
         public IResult Update(Car car)
         {
             _carDal.Update(car);

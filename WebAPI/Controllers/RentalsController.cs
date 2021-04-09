@@ -11,11 +11,11 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RentalController : ControllerBase
+    public class RentalsController : ControllerBase
     {
         IRentalService _rentalService;
 
-        public RentalController(IRentalService rentalService)
+        public RentalsController(IRentalService rentalService)
         {
             _rentalService = rentalService;
         }
@@ -40,7 +40,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-        [HttpPost("Add")]
+        [HttpPost("rent")]
         public IActionResult Add(Rental rental)
         {
             var result = _rentalService.Add(rental);

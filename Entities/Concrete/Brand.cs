@@ -9,6 +9,7 @@ namespace Entities.Concrete
     {
         public int ID { get; set; }
         public string BrandName { get; set; }
+        public string BrandLogo { get; set; }
 
     }
 }

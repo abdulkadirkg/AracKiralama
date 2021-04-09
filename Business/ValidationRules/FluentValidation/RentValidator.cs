@@ -10,12 +10,7 @@ namespace Business.ValidationRules.FluentValidation
     {
         public RentValidator()
         {
-            RuleFor(r => r.ReturnDate).Must(Null).WithMessage("Bu Araç Henüz Müsait Değil!");
-        }
-
-        private bool Null(DateTime? arg)
-        {
-            return !arg.HasValue;
+            RuleFor(r => r.ReturnDate).NotNull().WithMessage("Bu Araç Henüz Müsait Değil!");
         }
     }
 }
