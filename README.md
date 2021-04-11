@@ -1,4 +1,5 @@
 Rent A Car Project
 With .NetCore
 
-UI gonne be Angular.
+FrontEnd
+https://github.com/abdulkadirkg/AracKiralamaFrontend
