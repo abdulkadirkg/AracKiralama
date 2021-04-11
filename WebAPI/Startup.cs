@@ -81,7 +81,6 @@ namespace WebAPI
 
             app.UseAuthentication();
 
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Aspects.Autofac.Transaction;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -17,13 +18,6 @@ namespace Business.Concrete
         {
             _userDal = userDal;
         }
-
-        //public IResult Add(User user)
-        //{
-        //    _userDal.Add(user);
-        //    return new SuccessResult();
-        //}
-
         public IResult Delete(User user)
         {
             _userDal.Delete(user);
@@ -50,10 +44,16 @@ namespace Business.Concrete
         {
             return _userDal.GetClaims(user);
         }
-
-        public void Add(User user)
+        [TransactionScopeAspect]
+        public IResult Add(User user)
         {
             _userDal.Add(user);
+            UserOperationClaim claim = new UserOperationClaim() {
+                UserID = user.ID,
+                OperationClaimID = _userDal.GetClaim("User").ID
+            };
+            _userDal.AddUserOperationClaim(claim);
+            return new SuccessResult("Kayıt Başarılı");
         }
 
         public User GetByMail(string email)

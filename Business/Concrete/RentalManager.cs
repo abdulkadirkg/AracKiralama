@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -18,7 +19,7 @@ namespace Business.Concrete
         {
             _rentalDal = rentalDal;
         }
-
+        //[SecuredOperation("admin")]
         public IResult Add(Rental rental)
         {
             IResult result = BusinessRules.Run(CheckIfNotAvailable(rental));
@@ -44,6 +45,11 @@ namespace Business.Concrete
         public IDataResult<List<Rental>> GetAll()
         {
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll());
+        }
+        [SecuredOperation("admin,user")]
+        public IDataResult<List<Rental>> GetByCustomer(int customerID)
+        {
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(c=>c.CustomerID == customerID));
         }
 
         public IResult Update(Rental rental)

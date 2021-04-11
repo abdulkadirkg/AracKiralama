@@ -10,6 +10,7 @@ namespace Business.Abstract
     {
         IDataResult<Rental> Get(int ID);
         IDataResult<List<Rental>> GetAll();
+        IDataResult<List<Rental>> GetByCustomer(int customerID);
         IResult Add(Rental rental);
         IResult Update(Rental rental);
         IResult Delete(Rental rental);

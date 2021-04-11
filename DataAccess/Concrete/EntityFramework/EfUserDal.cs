@@ -6,6 +6,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete.EntityFramework
 {
@@ -22,6 +23,24 @@ namespace DataAccess.Concrete.EntityFramework
                              select new OperationClaim { ID = operationClaim.ID, Name = operationClaim.Name };
                 return result.ToList();
 
+            }
+        }
+
+        public void AddUserOperationClaim(UserOperationClaim userOperationClaim)
+        {
+            using(var context = new CarContext())
+            {
+                var addedEntity = context.Entry(userOperationClaim);
+                addedEntity.State = EntityState.Added;
+                context.SaveChanges();
+            }
+        }
+
+        public OperationClaim GetClaim(string claim)
+        {
+            using(var context = new CarContext())
+            {
+                return context.Set<OperationClaim>().SingleOrDefault(c=>c.Name == claim);
             }
         }
     }
