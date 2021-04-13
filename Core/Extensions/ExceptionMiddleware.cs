@@ -50,7 +50,7 @@ namespace Core.Extensions
                     Errors = errors
                 }.ToString());
 
-            }
+            } 
 
             return httpContext.Response.WriteAsync(new ErrorDetails
             {

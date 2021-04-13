@@ -71,8 +71,7 @@ namespace ConsoleUI
                 ColorID = 1,
                 DailyPrice = 125.99M,
                 Description = "5.20D",
-                ModelYear = 2020,
-                BrandName = "BMW"
+                ModelYear = 2020
             };
 
             CarManager carManager = new CarManager(new EfCarDal());

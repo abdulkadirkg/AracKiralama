@@ -1,10 +1,13 @@
 ﻿using Business.Abstract;
+using Core.Utilities.IoC;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
@@ -14,10 +17,13 @@ namespace WebAPI.Controllers
     public class RentalsController : ControllerBase
     {
         IRentalService _rentalService;
-
+        int _customerID;
+        IHttpContextAccessor _httpContextAccessor;
         public RentalsController(IRentalService rentalService)
         {
             _rentalService = rentalService;
+            _httpContextAccessor = ServiceTool.ServiceProvider.GetService<IHttpContextAccessor>();
+            _customerID = Convert.ToInt32(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
         }
 
         [HttpGet("getall")]
@@ -32,9 +38,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbycustomer")]
-        public IActionResult GetByCustomer(int customerID)
+        public IActionResult GetByCustomer()
         {
-            var result = _rentalService.GetByCustomer(customerID);
+            var result = _rentalService.GetByCustomer(_customerID);
             if (result.Success)
             {
                 return Ok(result);
@@ -55,6 +61,7 @@ namespace WebAPI.Controllers
         [HttpPost("rent")]
         public IActionResult Add(Rental rental)
         {
+            rental.CustomerID = _customerID;
             var result = _rentalService.Add(rental);
             if (result.Success)
             {

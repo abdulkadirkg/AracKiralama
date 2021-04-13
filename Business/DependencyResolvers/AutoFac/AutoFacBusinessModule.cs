@@ -22,14 +22,14 @@ namespace Business.DependencyResolvers.AutoFac
             builder.RegisterType<CarManager>().As<ICarService>().SingleInstance();
             builder.RegisterType<EfCarDal>().As<ICarDal>().SingleInstance();
             //Brand
-            builder.RegisterType<BrandManager>().As<IBrandService>();
-            builder.RegisterType<EfBrandDal>().As<IBrandDal>();
+            builder.RegisterType<BrandManager>().As<IBrandService>().SingleInstance();
+            builder.RegisterType<EfBrandDal>().As<IBrandDal>().SingleInstance();
             //Color
-            builder.RegisterType<ColorManager>().As<IColorService>();
-            builder.RegisterType<EfColorDal>().As<IColorDal>();
+            builder.RegisterType<ColorManager>().As<IColorService>().SingleInstance();
+            builder.RegisterType<EfColorDal>().As<IColorDal>().SingleInstance();
             //Rental
-            builder.RegisterType<RentalManager>().As<IRentalService>().SingleInstance();
-            builder.RegisterType<EfRentalDal>().As<IRentalDal>().SingleInstance();
+            builder.RegisterType<RentalManager>().As<IRentalService>().SingleInstance().SingleInstance();
+            builder.RegisterType<EfRentalDal>().As<IRentalDal>().SingleInstance().SingleInstance();
             //User
             builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
             builder.RegisterType<EfUserDal>().As<IUserDal>().SingleInstance();
